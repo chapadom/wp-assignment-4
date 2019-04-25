@@ -227,9 +227,11 @@ map.on('style.load', function() {
 
       // lookup the corresponding description for the land use code
       var landuseDescription = LandUseLookup(parseInt(lot.properties.landuse)).description;
+      var bblFormat = toString(lot.properties.bbl);
 
-      // use jquery to display the address and land use description to the sidebar
+      // use jquery to display the address, bbl, land use description to the sidebar
       $('#address').text(lot.properties.address);
+      $('#bbl').text(lot.properties.bbl);
       $('#landuse').text(landuseDescription);
 
       // set this lot's polygon feature as the data for the highlight source
