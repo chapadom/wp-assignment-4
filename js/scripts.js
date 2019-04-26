@@ -1,5 +1,4 @@
 
-
 // sets up my mapbox access token so they can track my usage of their basemap services
 mapboxgl.accessToken = 'pk.eyJ1IjoibWlsaW1hcHMiLCJhIjoiY2p1bXhxcHdqMHYzajRlczhsMnN6cGx6ciJ9.dRiK8JSG4Q0kReMYqNveUg';
 
@@ -15,7 +14,6 @@ var map = new mapboxgl.Map({
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
-
 
 
 // a helper function for looking up colors and descriptions for NYC land use codes
@@ -250,13 +248,31 @@ map.on('style.load', function() {
 
 tourSites.forEach(function(fundayData) {
   var thissiteColor = 'steelblue';
-  if (fundayData.type === 'required') thissiteColor = '#88419d';
+  if (fundayData.type === 'required') thissiteColor = '#d95f0e';
   if (fundayData.type === 'optional') thissiteColor = '#8c96c6';
+
   new mapboxgl.Marker({
     color: thissiteColor,
   })
     .setLngLat([fundayData.lon, fundayData.lat])
     .setPopup(new mapboxgl.Popup({ offset: 40 })
-      .setText(`Site Number ${fundayData.site} is located at ${fundayData.name}, ${fundayData.address}.`))
+      .setText(`Site ${fundayData.site} is located at ${fundayData.name}, ${fundayData.address}.`))
     .addTo(map);
+})
+
+
+map.addSource('route', {
+  type: 'geojson',
+  data: './data/route.geojson',
+});
+
+map.addLayer({
+  id: 'route-line',
+  type: 'line',
+  source: 'route',
+  paint: {
+    'line-width': 5,
+    'line-opacity': 0.9,
+    'line-color': '#d95f0e',
+  }
 })

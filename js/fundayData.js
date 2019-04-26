@@ -1,14 +1,14 @@
 var tourSites = [
  {
-   "site": "1",
-   "name": "Giardini Pizza"
-   "address": "363 Smith Street"
+   "site": "2",
+   "name": "Giardini Pizza",
+   "address": "363 Smith Street",
    "type": "optional",
    "lon": -73.99516225,
    "lat": 40.67957623
  },
  {
-   "site": "2",
+   "site": "1",
    "name": "Carroll Street F/G Subway Stop",
    "address": "360 Smith Street",
    "type": "required",
